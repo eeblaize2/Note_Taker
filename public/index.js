@@ -81,7 +81,9 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
+  console.log(note);
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+  //const noteId = JSON.parse(note.parentElement.getAttribute('data-note'));
 
   if (activeNote.id === noteId) {
     activeNote = {};
@@ -143,6 +145,7 @@ const renderNoteList = async (notes) => {
         'text-danger',
         'delete-note'
       );
+
       delBtnEl.addEventListener('click', handleNoteDelete);
 
       liEl.append(delBtnEl);
@@ -155,10 +158,10 @@ const renderNoteList = async (notes) => {
     noteListItems.push(createLi('No saved Notes', false));
   }
 
+
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
-
     noteListItems.push(li);
   });
 

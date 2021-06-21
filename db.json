@@ -1,1 +1,4 @@
-[{"title":"Test Title","text":"Test text"},{"title":"Second Try","text":"Additional Text"},{"title":"New note","text":"This is a new notes"},{"title":"Once More","text":"Lets try again\n"}]
+[{"title":"Test Title","text":"Test text","id":8},
+    {"title":"Second Try","text":"Additional Text","id":3},
+    {"title":"New note","text":"This is a new notes","id":11},
+    {"title":"Once More","text":"Lets try again\n","id":12}]

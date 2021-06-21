@@ -38,8 +38,26 @@ app.post('/api/notes', (req, res) => {
 
     const data = fs.readFileSync('./db.json', 'utf8');
 
-    // parse JSON string to JSON object
+    // parse JSON string to JS object
     const db_data = JSON.parse(data);
+
+    // add an id number
+    let id= -1;
+    // Make an array of current id numbers.
+    let id_arr = [];
+    for (note of db_data) {
+      id_arr.push(note.id);
+    }
+    const max_id = Math.max(...id_arr);
+    for (let i=0; i<max_id;i++) { // loop through all numbers between 0 and current max id
+      if (id_arr.indexOf(i) == -1) { // if number isn't in current id_array, use as an id
+        id = i;
+        break;
+      }
+    }
+    if (id == -1) id = max_id + 1;
+
+    note.id = id;
 
     // Add note to db.json
     db_data.push(note);
@@ -66,18 +84,33 @@ app.post('/api/notes', (req, res) => {
 
 app.delete('/api/notes/:id', (req, res) => {
 
-  // read from db.json
+  try {
 
-  // convert string to an array
+    console.log("Received request to delete note with id: " + id);
+    // read from db.json
+    const data = fs.readFileSync('./db.json', 'utf8');
+    
+    // convert string to an array
+    const db_data = JSON.parse(data);
 
-  // remove element from the array where index = id ?????
+    // remove element from the array where index = id ?????
+    // find the note with the matching id
+    db_data.splice(id,1);
 
-  // convert array back to a string
+    // convert array back to a string
+    const db_string= JSON.stringify(db_data);
 
-  // save the string to db.json
+    // save the string to db.json
+    fs.writeFileSynce('./db.json',db_string);
 
-  // send a success note to the client
-
+    // send a success note to the client
+    res.sendStatus(200);
+  }
+  catch (err) {
+    console.log(`Error reading file from disk: ${err}`);
+    // Something bad happened. Call the ghostbusters.
+    res.sendStatus(500);
+  }
 
 });
 
