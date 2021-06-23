@@ -30,22 +30,22 @@ app.post('/api/notes', (req, res) => {
 
   // Add the note to db.json
   // Read from incoming JSON body
-  const note = req.body;
-  console.log(note);
+  const new_note = req.body;
+  console.log(new_note);
 
   // Read db.json
-  try {
+  //try {
 
     const data = fs.readFileSync('./db.json', 'utf8');
 
     // parse JSON string to JS object
-    const db_data = JSON.parse(data);
+    let db_data = JSON.parse(data);
 
     // add an id number
     let id= -1;
     // Make an array of current id numbers.
     let id_arr = [];
-    for (note of db_data) {
+    for (let note of db_data) {
       id_arr.push(note.id);
     }
     const max_id = Math.max(...id_arr);
@@ -57,10 +57,10 @@ app.post('/api/notes', (req, res) => {
     }
     if (id == -1) id = max_id + 1;
 
-    note.id = id;
+    new_note.id = id;
 
     // Add note to db.json
-    db_data.push(note);
+    db_data.push(new_note);
 
     // Convert db_data back into a string
     const db_string = JSON.stringify(db_data);
@@ -71,12 +71,12 @@ app.post('/api/notes', (req, res) => {
     // Return "success" indicator.
     res.sendStatus(200);
 
-  } catch (err) {
-      console.log(`Error reading file from disk: ${err}`);
-      // Reply that there was a problem.
+  // } catch (err) {
+  //     console.log(`Error reading file from disk: ${err}`);
+  //     // Reply that there was a problem.
 
-      res.sendStatus(500);
-  }
+  //     res.sendStatus(500);
+  // }
 
 
 });
@@ -84,7 +84,9 @@ app.post('/api/notes', (req, res) => {
 
 app.delete('/api/notes/:id', (req, res) => {
 
-  try {
+  //try {
+
+    let id = req.params.id;
 
     console.log("Received request to delete note with id: " + id);
     // read from db.json
@@ -95,22 +97,30 @@ app.delete('/api/notes/:id', (req, res) => {
 
     // remove element from the array where index = id ?????
     // find the note with the matching id
-    db_data.splice(id,1);
 
-    // convert array back to a string
-    const db_string= JSON.stringify(db_data);
+    for (let i=0; i<db_data.length; i++) {
+    //for (let note of db_data) {
+      if (db_data[i].id == id) {
+        db_data.splice(i,1);
+        // convert array back to a string
+        const db_string= JSON.stringify(db_data);
+        // save the string to db.json
+        fs.writeFileSync('./db.json',db_string);
+        // send a success note to the client
+        res.sendStatus(200);
+        return;
+      }
+    }
 
-    // save the string to db.json
-    fs.writeFileSynce('./db.json',db_string);
-
-    // send a success note to the client
-    res.sendStatus(200);
-  }
-  catch (err) {
-    console.log(`Error reading file from disk: ${err}`);
-    // Something bad happened. Call the ghostbusters.
     res.sendStatus(500);
-  }
+    
+
+  // }
+  // catch (err) {
+  //   console.log(`Error reading file from disk: ${err}`);
+  //   // Something bad happened. Call the ghostbusters.
+  //   res.sendStatus(500);
+  // }
 
 });
 

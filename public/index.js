@@ -42,13 +42,16 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   });
 
-const deleteNote = (id) =>
+const deleteNote = (id) => 
+  //console.log("Fetching: " + `/api/notes/${id}`);
+  //console.log("TESTING: " + id);
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
+
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -77,6 +80,9 @@ const handleNoteSave = () => {
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
+
+  console.log("handleNoteDelete has been called");
+  console.log(e);
   // prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
