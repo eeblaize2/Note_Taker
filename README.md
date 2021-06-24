@@ -1,16 +1,48 @@
-# Note_TakerAS A small business owner
-I WANT to be able to write and save notes
-SO THAT I can organize my thoughts and keep track of tasks I need to complete
-GIVEN a note-taking application
-WHEN I open the Note Taker
-THEN I am presented with a landing page with a link to a notes page
-WHEN I click on the link to the notes page
-THEN I am presented with a page with existing notes listed in the left-hand column, plus empty fields to enter a new note title and the note’s text in the right-hand column
-WHEN I enter a new note title and the note’s text
-THEN a Save icon appears in the navigation at the top of the page
-WHEN I click on the Save icon
-THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes
-WHEN I click on an existing note in the list in the left-hand column
-THEN that note appears in the right-hand column
-WHEN I click on the Write icon in the navigation at the top of the page
-THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
+
+# Note Taker
+Application that allows you to write, save, and access saved notes.
+
+## Table of contents
+* [Project's-aim](#project's-aim)
+* [How-to-use](#how-to-use)
+* [Link-to-deployed-application](#link-to-deployed-application)
+* [Technologies](#technologies)
+* [Contributors](#contributors)
+* [Screenshot-to-deployed-application](#screenshot-to-deployed-application)
+
+
+
+
+## Project's aim
+
+Create an app that allows the user to write and save notes and see previously saved notes.
+ 
+
+
+## How to use
+1-Open Note taker app
+2-Follow link to new notes
+3-Enter new notes
+4-Click on saved notes to see previously entered notes
+5-Click on pencil icon to write new notes
+
+
+## Link to deployed application:
+ [Note_Taker](https://eeblaize2.github.io/Note_Taker/)
+
+
+## Technologies
+Project is created with:
+* HTML 
+* CSS 
+* Javascript
+* Package.JSON
+* DB.JSON
+
+
+## Contributors:
+* [Erin](https://github.com/eeblaize2)
+
+
+## Screenshot to deployed application
+![NoteTaker](https://user-images.githubusercontent.com/77705971/123211476-5e687480-d478-11eb-9706-b9c63b1234af.PNG)
