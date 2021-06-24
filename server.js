@@ -49,13 +49,15 @@ app.post('/api/notes', (req, res) => {
       id_arr.push(note.id);
     }
     const max_id = Math.max(...id_arr);
-    for (let i=0; i<max_id;i++) { // loop through all numbers between 0 and current max id
+    for (let i=1; i<max_id;i++) { // loop through all numbers between 0 and current max id
       if (id_arr.indexOf(i) == -1) { // if number isn't in current id_array, use as an id
         id = i;
         break;
       }
     }
-    if (id == -1) id = max_id + 1;
+    if (id_arr.length == 0) {
+      id = 1;
+    } else if (id == -1) id = max_id + 1;
 
     new_note.id = id;
 

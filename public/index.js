@@ -112,6 +112,8 @@ const handleNoteView = (e) => {
 const handleNewNoteView = (e) => {
   activeNote = {};
   renderActiveNote();
+  noteTitle.removeAttribute('readonly');
+  noteText.removeAttribute('readonly');
 };
 
 const handleRenderSaveBtn = () => {
