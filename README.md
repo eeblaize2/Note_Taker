@@ -28,7 +28,7 @@ Create an app that allows the user to write and save notes and see previously sa
 
 
 ## Link to deployed application:
- [Note_Taker](https://eeblaize2.github.io/Note_Taker/)
+ [Note_Taker](https://homework-note-taker-app.herokuapp.com/)
 
 
 ## Technologies
